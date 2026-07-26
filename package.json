@@ -1,0 +1,30 @@
+{
+  "name": "reliable-job-platform",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @reliable-job-platform/shared && npm run build -w @reliable-job-platform/database && npm run build -w @reliable-job-platform/api && npm run build -w @reliable-job-platform/worker && npm run build -w @reliable-job-platform/web",
+    "dev:api": "npm run build -w @reliable-job-platform/shared && npm run dev -w @reliable-job-platform/api",
+    "dev:web": "npm run build -w @reliable-job-platform/shared && npm run dev -w @reliable-job-platform/web",
+    "dev:worker": "npm run build -w @reliable-job-platform/shared && npm run dev -w @reliable-job-platform/worker",
+    "docker:down": "docker compose down",
+    "docker:up": "docker compose up -d",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "typecheck": "npm run build -w @reliable-job-platform/shared && npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "eslint": "^9.28.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
